@@ -66,8 +66,19 @@ function dotFiles () {
 function changeShell () {
     chsh -s /usr/bin/zsh $USER && exec zsh
 }
+
+# copied this function from mbtamuli
+function addSSH () {
+users=(th3karkota)
+
+for user in "${users[@]}"; do
+  curl -fsSL https://github.com/$user.keys | tee -a /root/.ssh/authorized_keys
+done
+}
+
 #### MAIN ####
 poop
 ohMyzsh
 dotFiles
 changeShell
+addSSH
