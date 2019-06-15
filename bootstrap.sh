@@ -68,6 +68,7 @@ function changeShell () {
 }
 
 # copied this function from mbtamuli
+
 function addSSH () {
 users=(th3karkota)
 
@@ -80,5 +81,6 @@ done
 poop
 ohMyzsh
 dotFiles
-changeShell
 addSSH
+# Shell must always be changed at the end
+changeShell
