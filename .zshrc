@@ -106,7 +106,6 @@ SPACESHIP_CHAR_SUFFIX=" "
 # alias ls="colorls --sd"
 # alias ll="colorls -l --sd"
 # alias ohmyzsh="mate ~/.oh-my-zsh"
-source ~/.zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
 source ~/.aliases
 
 # TMUX should be the last command to execute, so keep it as last line
