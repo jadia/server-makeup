@@ -48,22 +48,19 @@ function poop () {
 }
 
 function ohMyzsh () {
-    bash -c "$(curl -fsSL https://raw.githubusercontent.com/robbyrussell/oh-my-zsh/master/tools/install.sh)" --unattended
+    bash -c "$(curl -fsSL https://raw.githubusercontent.com/robbyrussell/oh-my-zsh/master/tools/install.sh) --unattended"
     redFlags "ohMyzsh"
-    git clone https://github.com/zsh-users/zsh-syntax-highlighting.git ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-syntax-highlighting
 }
 
 
 function dotFiles () {
-    git clone https://github.com/th3karkota/server-makeup.git
-    # !!! ATTENTION: Removing previous .tmux and .git folders.
-    rm -rf .tmux .git
-    ls -A server-makeup/ | xargs -r -I {} mv -f 'server-makeup/{}' .
-    redFlags "dot-files Moving"
+    mkdir ~/.tmux
+    curl -o $HOME/.tmux/.tmux.conf https://raw.githubusercontent.com/th3karkota/server-makeup/master/.tmux/.tmux.conf
+    curl -o $HOME/.tmux.conf.local https://raw.githubusercontent.com/th3karkota/server-makeup/master/.tmux.conf.local
     ln -s -f .tmux.conf.local .tmux/.tmux.conf.local
-    mv -f agnoster.zsh-theme $HOME/.oh-my-zsh/themes/agnoster.zsh-theme
-    # cleanup
-    rmdir server-makeup
+    curl -o $HOME/.zshrc https://raw.githubusercontent.com/th3karkota/server-makeup/master/.zshrc
+    curl https://raw.githubusercontent.com/th3karkota/server-makeup/master/agnoster.zsh-theme > $HOME/.oh-my-zsh/themes/agnoster.zsh-theme
+    curl -o $HOME/.aliases https://raw.githubusercontent.com/th3karkota/server-makeup/master/.aliases
 }
 
 function changeShell () {
