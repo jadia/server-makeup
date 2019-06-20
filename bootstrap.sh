@@ -57,7 +57,7 @@ function dotFiles () {
     mkdir ~/.tmux
     curl -o $HOME/.tmux/.tmux.conf https://raw.githubusercontent.com/th3karkota/server-makeup/master/.tmux/.tmux.conf
     curl -o $HOME/.tmux.conf.local https://raw.githubusercontent.com/th3karkota/server-makeup/master/.tmux.conf.local
-    ln -s -f .tmux.conf.local .tmux/.tmux.conf.local
+    ln -s -f $HOME/.tmux.conf.local .tmux/.tmux.conf.local
     curl -o $HOME/.zshrc https://raw.githubusercontent.com/th3karkota/server-makeup/master/.zshrc
     curl https://raw.githubusercontent.com/th3karkota/server-makeup/master/agnoster.zsh-theme > $HOME/.oh-my-zsh/themes/agnoster.zsh-theme
     curl -o $HOME/.aliases https://raw.githubusercontent.com/th3karkota/server-makeup/master/.aliases
