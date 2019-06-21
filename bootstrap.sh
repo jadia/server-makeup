@@ -33,15 +33,15 @@ function poop () {
     # Why poop? That's the first thing you do in the morning,
     # this system just woke-up, what do you want it to do first?
     
-    apt-get update && \\
+    apt-get update && \
     apt-get install -y \
     vim \
-    glances \
     git \
     wget \
     curl \
     unzip \
     tmux \
+    glances \
     zsh
     redFlags "Update"
     # Now it can take bath and brush it's RAM chips.
@@ -65,7 +65,7 @@ function dotFiles () {
 }
 
 function changeShell () {
-    chsh -s /usr/bin/zsh $USER && exec zsh
+    chsh -s /usr/bin/zsh $USER && zsh
     redFlag "changeShell"
 }
 
