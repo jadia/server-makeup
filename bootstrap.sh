@@ -65,8 +65,9 @@ function dotFiles () {
 }
 
 function changeShell () {
-    chsh -s /usr/bin/zsh $USER && zsh
-    redFlag "changeShell"
+    chsh -s /usr/bin/zsh $USER
+    zsh
+    redFlags "changeShell"
 }
 
 # copied this function from mbtamuli
