@@ -1,7 +1,8 @@
 #!/bin/bash
 : '
 Shell customization script.
-Author: github.com/th3karkota
+Author: github.com/jadia
+Mail: nitish@jadia.dev
 Date: 2019-06-15
 '
 
@@ -55,13 +56,14 @@ function ohMyzsh () {
 
 function dotFiles () {
     mkdir $HOME/.tmux
-    curl -o $HOME/.tmux/.tmux.conf https://raw.githubusercontent.com/th3karkota/server-makeup/master/.tmux/.tmux.conf
+    curl -o $HOME/.tmux/.tmux.conf https://raw.githubusercontent.com/jadia/server-makeup/master/.tmux/.tmux.conf
     ln -s -f $HOME/.tmux/.tmux.conf
-    curl -o $HOME/.tmux/.tmux.conf.local https://raw.githubusercontent.com/th3karkota/server-makeup/master/.tmux.conf.local
+    curl -o $HOME/.tmux/.tmux.conf.local https://raw.githubusercontent.com/jadia/server-makeup/master/.tmux.conf.local
     ln -s -f $HOME/.tmux/.tmux.conf.local $HOME/.tmux.conf.local
-    curl -o $HOME/.zshrc https://raw.githubusercontent.com/th3karkota/server-makeup/master/.zshrc
-    curl https://raw.githubusercontent.com/th3karkota/server-makeup/master/agnoster.zsh-theme > $HOME/.oh-my-zsh/themes/agnoster.zsh-theme
-    curl -o $HOME/.aliases https://raw.githubusercontent.com/th3karkota/server-makeup/master/.aliases
+    curl -o $HOME/.zshrc https://raw.githubusercontent.com/jadia/server-makeup/master/.zshrc
+    curl https://raw.githubusercontent.com/jadia/server-makeup/master/agnoster.zsh-theme > $HOME/.oh-my-zsh/themes/agnoster.zsh-theme
+    touch $HOME/.aliases
+    curl -o $HOME/.aliases https://raw.githubusercontent.com/jadia/server-makeup/master/.aliases
 }
 
 function changeShell () {
@@ -73,8 +75,12 @@ function changeShell () {
 # copied this function from mbtamuli
 
 function addSSH () {
-users=(th3karkota)
-
+users=(jadia)
+#FIXME It does not add ssh keys when .ssh folder doesn't exists
+if [[ ! -d /root/.ssh ]]
+    mkdir /root/.ssh
+fi
+touch /root/.ssh/authorized_keys
 for user in "${users[@]}"; do
   curl -fsSL https://github.com/$user.keys | tee -a /root/.ssh/authorized_keys
 done
