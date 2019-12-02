@@ -72,14 +72,15 @@ function changeShell () {
     redFlags "changeShell"
 }
 
-# copied this function from mbtamuli
+# copied this function from @mbtamuli
 
 function addSSH () {
 users=(jadia)
 #FIXME It does not add ssh keys when .ssh folder doesn't exists
-if [[ ! -d /root/.ssh ]]
-    mkdir /root/.ssh
-fi
+# if [[ ! -d /root/.ssh ]]
+#     mkdir /root/.ssh
+# fi
+mkdir -p /root/.ssh
 touch /root/.ssh/authorized_keys
 for user in "${users[@]}"; do
   curl -fsSL https://github.com/$user.keys | tee -a /root/.ssh/authorized_keys
