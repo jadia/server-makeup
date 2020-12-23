@@ -1,9 +1,10 @@
 #!/bin/bash
 : '
-Shell customization script.
+VPS bootstrap script
 Author: github.com/jadia
-Mail: nitish@jadia.dev
+Mail: nitish[at]jadia.dev
 Date: 2019-06-15
+Version: v0.2
 '
 
 ##### Colors #####
@@ -30,9 +31,7 @@ function redFlags() {
 
 #### Functions ####
 
-function poop () {
-    # Why poop? That's the first thing you do in the morning,
-    # this system just woke-up, what do you want it to do first?
+function install_packages () {
     
     apt-get update && \
     apt-get install -y \
@@ -42,10 +41,10 @@ function poop () {
     curl \
     unzip \
     tmux \
-    glances \
+    python3 \
+    python3-pip \
     zsh
     redFlags "Update"
-    # Now it can take bath and brush it's RAM chips.
 }
 
 function ohMyzsh () {
@@ -66,31 +65,33 @@ function dotFiles () {
     curl -o $HOME/.aliases https://raw.githubusercontent.com/jadia/server-makeup/master/.aliases
 }
 
-function changeShell () {
-    chsh -s /usr/bin/zsh $USER
-    zsh
-    redFlags "changeShell"
+function changeShell_banner () {
+    echo -e """$clearColor$blueHigh
+   Please run the following command to make zsh your default shell:
+
+
+                            sudo chsh -s /usr/bin/zsh \$USER
+
+    $clearColor
+    """
 }
 
-# copied this function from @mbtamuli
+
 
 function addSSH () {
 users=(jadia)
-#FIXME It does not add ssh keys when .ssh folder doesn't exists
-# if [[ ! -d /root/.ssh ]]
-#     mkdir /root/.ssh
-# fi
 mkdir -p /root/.ssh
 touch /root/.ssh/authorized_keys
 for user in "${users[@]}"; do
   curl -fsSL https://github.com/$user.keys | tee -a /root/.ssh/authorized_keys
 done
-}
+} # Source: @mbtamuli
+
 
 #### MAIN ####
-poop
+install_packages
 ohMyzsh
 dotFiles
 addSSH
 # Shell must always be changed at the end
-changeShell
+changeShell_banner
