@@ -16,10 +16,10 @@ green="\e[32m"
 greenHigh="\e[42m"
 
 #### check if script is run as root ####
-if [[ $EUID -ne 0 ]]; then
-    echo -e "$blueHigh This script must be run as root $clearColor"
-    exit 1
-fi
+# if [[ $EUID -ne 0 ]]; then
+#     echo -e "$blueHigh This script must be run as root $clearColor"
+#     exit 1
+# fi
 
 function redFlags() {
     if [ $? == 0 ]; then
@@ -33,8 +33,8 @@ function redFlags() {
 
 function install_packages () {
     
-    apt-get update && \
-    apt-get install -y \
+    sudo apt update && \
+    sudo apt install -y \
     vim \
     git \
     wget \
@@ -80,10 +80,10 @@ function changeShell_banner () {
 
 function addSSH () {
 users=(jadia)
-mkdir -p /root/.ssh
-touch /root/.ssh/authorized_keys
+mkdir -p $HOME/.ssh
+touch $HOME/.ssh/authorized_keys
 for user in "${users[@]}"; do
-  curl -fsSL https://github.com/$user.keys | tee -a /root/.ssh/authorized_keys
+  curl -fsSL https://github.com/$user.keys | tee -a $HOME/.ssh/authorized_keys
 done
 } # Source: @mbtamuli
 
