@@ -16,7 +16,10 @@ ZSH_THEME="agnoster"
 
 
 ######### PLUGINS ###########
-plugins=(git docker)
+plugins=(git
+        virtualenv
+        zsh-autosuggestions
+        )
 
 # Set list of themes to pick from when loading at random
 # Setting this variable when ZSH_THEME=random will cause zsh to load
