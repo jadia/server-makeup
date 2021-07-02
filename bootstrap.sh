@@ -4,7 +4,7 @@ VPS bootstrap script
 Author: github.com/jadia
 Mail: nitish[at]jadia.dev
 Date: 2019-06-15
-Version: v0.2
+Version: v0.2.1
 '
 
 ##### Colors #####
@@ -59,10 +59,10 @@ function dotFiles () {
     mkdir $HOME/.tmux
     curl -o $HOME/.tmux/.tmux.conf https://raw.githubusercontent.com/jadia/server-makeup/master/.tmux/.tmux.conf
     ln -s -f $HOME/.tmux/.tmux.conf
-    curl -o $HOME/.tmux/.tmux.conf.local https://raw.githubusercontent.com/jadia/server-makeup/master/.tmux.conf.local
+    curl -o $HOME/.tmux/.tmux.conf.local https://raw.githubusercontent.com/jadia/server-makeup/master/.tmux/.tmux.conf.local
     ln -s -f $HOME/.tmux/.tmux.conf.local $HOME/.tmux.conf.local
     curl -o $HOME/.zshrc https://raw.githubusercontent.com/jadia/server-makeup/master/.zshrc
-    curl https://raw.githubusercontent.com/jadia/server-makeup/master/agnoster.zsh-theme > $HOME/.oh-my-zsh/themes/agnoster.zsh-theme
+    curl https://raw.githubusercontent.com/jadia/server-makeup/master/agnoster.zsh-theme > $HOME/.oh-my-zsh/custom/themes/agnoster-v2.zsh-theme
     touch $HOME/.aliases
     curl -o $HOME/.aliases https://raw.githubusercontent.com/jadia/server-makeup/master/.aliases
 }
@@ -87,13 +87,23 @@ touch $HOME/.ssh/authorized_keys
 for user in "${users[@]}"; do
   curl -fsSL https://github.com/$user.keys | tee -a $HOME/.ssh/authorized_keys
 done
-} # Source: @mbtamuli
+}
+
+function nopass_sudo () {
+    ## Check how vagrant does this using 99_vagrant file
+    LINE='include "/configs/projectname.conf"'
+    FILE='/etc/'
+    grep -qF -- "$LINE" "$FILE" || echo "$LINE" >> "$FILE"
+    
+    echo "$USER ALL=(ALL:ALL) NOPASSWD:ALL" | sudo EDITOR='tee -a' visudo
+}
 
 
 #### MAIN ####
+# nopass_sudo
 install_packages
 ohMyzsh
 dotFiles
 addSSH
-# Shell must always be changed at the end
+# Shell change must be done at the end only
 changeShell_banner
