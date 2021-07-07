@@ -56,15 +56,16 @@ function ohMyzsh () {
 
 
 function dotFiles () {
+    #TMUX
     mkdir $HOME/.tmux
     curl -o $HOME/.tmux/.tmux.conf https://raw.githubusercontent.com/jadia/server-makeup/master/.tmux/.tmux.conf
     ln -s -f $HOME/.tmux/.tmux.conf
     curl -o $HOME/.tmux/.tmux.conf.local https://raw.githubusercontent.com/jadia/server-makeup/master/.tmux/.tmux.conf.local
     ln -s -f $HOME/.tmux/.tmux.conf.local $HOME/.tmux.conf.local
+    #ZSH config
     curl -o $HOME/.zshrc https://raw.githubusercontent.com/jadia/server-makeup/master/.zshrc
-    curl https://raw.githubusercontent.com/jadia/server-makeup/master/agnoster.zsh-theme > $HOME/.oh-my-zsh/custom/themes/agnoster-v2.zsh-theme
-    touch $HOME/.aliases
-    curl -o $HOME/.aliases https://raw.githubusercontent.com/jadia/server-makeup/master/.aliases
+    curl https://raw.githubusercontent.com/jadia/server-makeup/master/agnosterv2.zsh-theme > $HOME/.oh-my-zsh/custom/themes/agnosterv2.zsh-theme
+    curl -o $HOME/.oh-my-zsh/custom/alias.zsh https://raw.githubusercontent.com/jadia/server-makeup/master/alias.zsh
 }
 
 function changeShell_banner () {
