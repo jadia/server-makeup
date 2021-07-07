@@ -1,6 +1,7 @@
 #!/bin/bash
 : '
-VPS bootstrap script
+Description: Ubuntu VPS bootstrap script
+Installation: curl -fsSL jadia.dev/ss | bash
 Author: github.com/jadia
 Mail: nitish[at]jadia.dev
 Date: 2019-06-15
