@@ -64,7 +64,7 @@ function dotFiles () {
     ln -s -f $HOME/.tmux/.tmux.conf.local $HOME/.tmux.conf.local
     #ZSH config
     curl -o $HOME/.zshrc https://raw.githubusercontent.com/jadia/server-makeup/master/.zshrc
-    curl https://raw.githubusercontent.com/jadia/server-makeup/master/agnosterv2.zsh-theme > $HOME/.oh-my-zsh/custom/themes/agnosterv2.zsh-theme
+    curl https://raw.githubusercontent.com/jadia/server-makeup/master/agnoster-v2.zsh-theme > $HOME/.oh-my-zsh/custom/themes/agnoster-v2.zsh-theme
     curl -o $HOME/.oh-my-zsh/custom/alias.zsh https://raw.githubusercontent.com/jadia/server-makeup/master/alias.zsh
 }
 

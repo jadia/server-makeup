@@ -11,7 +11,7 @@ export ZSH=$HOME/.oh-my-zsh
 # See https://github.com/robbyrussell/oh-my-zsh/wiki/Themes
 
 
-ZSH_THEME="agnosterv2"
+ZSH_THEME="agnoster-v2"
 #ZSH_THEME="robbyrussell"
 
 
@@ -63,7 +63,7 @@ plugins=(git
 # "mm/dd/yyyy"|"dd.mm.yyyy"|"yyyy-mm-dd"
 # or set a custom format using the strftime function format specifications,
 # see 'man strftime' for details.
- HIST_STAMPS="mm/dd/yyyy"
+ HIST_STAMPS="dd/mm/yyyy"
 
 # Would you like to use another custom folder than $ZSH/custom?
 # ZSH_CUSTOM=/path/to/new-custom-folder
@@ -109,7 +109,6 @@ SPACESHIP_CHAR_SUFFIX=" "
 # alias ls="colorls --sd"
 # alias ll="colorls -l --sd"
 # alias ohmyzsh="mate ~/.oh-my-zsh"
-source ~/.aliases
 
 # TMUX should be the last command to execute, so keep it as last line
 #tmux
